@@ -1,0 +1,11 @@
+<link type="text/css" rel="stylesheet" href="app/leave/leaveRow/leaveRow.comp.css"/>
+
+<div class="leave-row">
+    <div class="leave-desc">
+        <p class="leave-time">{{$ctrl.record.from}} - {{$ctrl.record.to}}</p>
+        <p class="leave-purpose">{{$ctrl.record.purpose}}</p>
+    </div>
+    <div class="leave-btns">
+        <button class="btn-leave" ng-style="{color:$ctrl.renderButtonText($ctrl.record.status)}">{{$ctrl.record.status}}</button>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="app/profile/profile.comp.css">
+<link type="text/css" rel="stylesheet" href="app/uploadForm/uploadForm.comp.css"/>
+
+<button ng-click="$ctrl.toggleVisible()">Profile</button>
+
+<div class="upload-form-container" ng-if="$ctrl.isVisible">
+    <div class="upload-form">
+        <form ng-submit="$ctrl.submit($event)">
+            <div class="upload-form-group">
+                <label for="file-upload"><i class="fa-solid fa-circle-plus"></i></label>
+                <input type="file" name="file" ng-model="file" id="file-upload" ng-model="uplo" required/>
+            </div>
+            <div class="upload-form-group">
+                <select name="" id="">
+                    <option value="aadhar" selected>Aadhar Card</option>
+                    <option value="pan">Pan Card</option>
+                    <option value="other">Other</option>
+                </select>
+                <p ng-if="$ctrl.file">File Uploaded</p>
+            </div>
+            <div class="btn-block">
+                <button type="submit">Upload Doument</button>
+                <button class="btn-cancel" ng-click="$ctrl.isVisible = !$ctrl.isVisible">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

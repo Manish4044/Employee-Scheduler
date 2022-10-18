@@ -1,0 +1,31 @@
+.leave-row{
+    display: flex;
+    align-items: center;
+    background: #504949;
+    border-radius: 10px;
+    margin:10px 0;
+    padding: 5px 10px;
+    color:lightgrey;
+}
+
+.leave-desc{
+    flex:1;
+}
+.leave-desc > .leave-time{
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 31px;
+}
+.leave-desc > .leave-purpose{
+    font-family: 'Inter';
+    font-style: normal;
+    font-size: 12px;
+}
+.btn-leave{
+    background-color: transparent;
+    border:none;
+    color:green;
+    font-weight: bold;
+    font-size: 13px;
+}

@@ -1,0 +1,16 @@
+.task{
+    margin:auto;
+    width:100%;
+    max-width: 1000px;
+    height:100%;
+    padding:10px;
+    overflow-y: scroll;
+    color:black;
+}
+.task::-webkit-scrollbar {
+    display: none;
+}
+.task .heading{
+    font-weight: 400;
+    margin:8px 0;
+}

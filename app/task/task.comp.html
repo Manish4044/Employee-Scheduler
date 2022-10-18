@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="app/task/task.comp.css">
+<div class="task">
+    <div class="task-today">
+        <h3 class="heading"><u>Today</u></h3>
+        <task-row></task-row>
+        <task-row></task-row>
+        <task-row></task-row>
+    </div>
+    <div class="task-upcoming">
+        <h3 class="heading"><u>Upcoming</u></h3>
+        <div ng-repeat="n in [1]">
+            <h4>15/10/22</h4>
+            <task-row></task-row>
+            <task-row></task-row>
+            <task-row></task-row>
+        </div>
+    </div>
+    <div class="task-past">
+        <h3 class="heading"><u>Past Activity</u></h3>
+        <div ng-repeat="n in [1]">
+            <h4>15/10/22</h4>
+            <task-row></task-row>
+            <task-row></task-row>
+            <task-row></task-row>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<link type="text/css" rel="stylesheet" href="app/leave/leaveForm/leaveForm.comp.css"/>
+
+<div class="leave-form-container">
+    <div class="leave-form" ng-app="app" ng-controller="app_form">
+        <form onsubmit="$ctrl.submit($event)">
+            <div class="leave-form-group">
+                <label for="from">From:</label>
+                <input type="date" name="from" id="from" ng-model="from" required/>
+            </div>
+            <div class="leave-form-group">
+                <label for="to">To:</label>
+                <input type="date" name="to" id="to" ng-model="to" required/>
+            </div>
+            <div class="leave-form-group">
+                <label for="purpose">Purpose of Leave</label>
+                <textarea name="purpose" id="purpose" cols="30" rows="10" required></textarea>
+            </div>
+            <div class="btn-block">
+                <button type="submit">Apply leave</button>
+            </div>
+        </form>
+        <button ng-click="$ctrl.submit">Apply leave</button>
+    </div>
+</div>

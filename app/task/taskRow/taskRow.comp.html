@@ -1,0 +1,5 @@
+<link rel="stylesheet" href="app/task/taskRow/taskRow.comp.css">
+<div class="task-row" ng-click="$ctrl.toggleTaskDone()">
+    <i class="fa-regular" ng-class="$ctrl.isTaskDone ? 'fa-circle-check' : 'fa-circle'"></i>
+    <p ng-style="{'text-decoration': $ctrl.isTaskDone?'line-through':'none' }">Try to complete the task by 18th</p>
+</div>
