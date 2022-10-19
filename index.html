@@ -30,11 +30,13 @@
 <body>
     <div class="main">
         <div class="main-left">
-            <sidebar></sidebar>
+            <div ng-include="'app/sidebar/sidebar.comp.html'" ng-controller="sidebar"></div>
         </div>
         <div class="main-right">
-            <navbar></navbar>
-            <div ng-view></div>
+            <div ng-include="'app/navbar/navbar.comp.html'" ng-controller="navbar"></div>
+            <div ng-include="'app/leave/leave.comp.html'" ng-controller="leave"></div>
+            <div ng-include="'app/profile/profile.comp.html'" ng-controller="profile"></div>
+            <div ng-include="'app/task/task.comp.html'" ng-controller="task"></div>
         </div>
     </div>
 </body>

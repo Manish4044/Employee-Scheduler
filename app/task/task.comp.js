@@ -1,20 +1,17 @@
-var task = angular.module('task',[]);
+// var task = angular.module('task',[]);
 
-task.component('task',{
-    templateUrl:"app/task/task.comp.html",
-    controller:function(){
-        var $ctrl = this;
+app.controller('task',function($scope){
         console.log("Task");
     }
-})
-task.component('taskRow',{
+);
+
+app.component('taskRow',{
     templateUrl:"app/task/taskRow/taskRow.comp.html",
     controller:function(){
-        var $ctrl = this;
-        $ctrl.isTaskDone = false;
-        $ctrl.toggleTaskDone = function(){
+        this.isTaskDone = false;
+        this.toggleTaskDone = function(){
             console.log("Toggle");
-            $ctrl.isTaskDone = !$ctrl.isTaskDone;
+            this.isTaskDone = !this.isTaskDone;
         }
         console.log("Task");
     }

@@ -1,23 +1,16 @@
-var sidebar = angular.module('sidebar',['ngAvatar']);
+// var sidebar = angular.module('sidebar',['ngAvatar']);
 
-sidebar.component('sidebar',{
-    templateUrl:'app/sidebar/sidebar.comp.html',
-    controller: function(){
-        var $ctrl = this;
-        $ctrl.showSidebar = false;
+app.controller('sidebar',function($scope){
+        $scope.showSidebar = false;
         
-        $ctrl.toggleSidebar = function() {
+        $scope.toggleSidebar = function() {
             console.log("Toggle");
-            $ctrl.showSidebar = !$ctrl.showSidebar;
+            $scope.showSidebar = !$scope.showSidebar;
         }
-        
     }
-})
+)
 
-sidebar.component('navbar',{
-    templateUrl:"app/navbar/navbar.comp.html",
-    controller:function(){
-        var $ctrl = this;
+app.controller('navbar',function($scope){
         console.log("Navbar loaded")
     }
-})
+)

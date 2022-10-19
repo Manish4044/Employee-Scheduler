@@ -1,18 +1,18 @@
 <link rel="stylesheet" href="app/sidebar/sidebar.comp.css">
 
-<div class="sidebar" ng-style="{'width':$ctrl.showSidebar ? '200px' : '50px' }">
+<div class="sidebar" ng-style="{'width':showSidebar ? '200px' : '50px' }">
     <div class="sidebar-logo" style="font-size:25px;">
-        <i class="fa fa-bars" ng-class="{'fa-chevron-left':$ctrl.showSidebar,'fa-bars':!$ctrl.showSidebar}" ng-click="$ctrl.toggleSidebar()"></i>  
-        <p class="logo" ng-if="$ctrl.showSidebar">Queueme</p>
+        <i class="fa fa-bars" ng-class="{'fa-chevron-left':showSidebar,'fa-bars':!showSidebar}" ng-click="toggleSidebar()"></i>  
+        <p class="logo" ng-if="showSidebar">Queueme</p>
     </div>
     <div class="sidebar-menu">
         <a class="sidebar-item" href="#!">
             <i class="fas fa-sign-out-alt"></i>
-            <p ng-if="$ctrl.showSidebar">Leaves</p>
+            <p ng-if="showSidebar">Leaves</p>
         </a>
         <a class="sidebar-item" href="#!task">
             <i class="fa fa-calendar-days"></i>
-            <p ng-if="$ctrl.showSidebar">Tasks</p>
+            <p ng-if="showSidebar">Tasks</p>
         </a>
     </div>
 </div>

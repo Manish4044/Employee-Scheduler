@@ -1,14 +1,9 @@
-import {getUserWithEmail, submitLeaveData} from '../core/service/firebase.js'
+import {getUserWithEmail, submitLeaveData, userSnapshot} from '../core/service/firebase.js'
 
-var leave = angular.module("leave",['ngMaterial']);
-
-leave.component("leave",{
-    templateUrl:'app/leave/leave.comp.html',
-    controller: function(){
-        var $ctrl = this;
-
-        $ctrl.showLeaveForm = false;
-        $ctrl.user = {
+app.controller("leave",function($scope){
+        $scope.showLeaveForm = false;
+       
+        $scope.user = {
             name:"Manish Yadav",
             id:"AjDiqZMuOXboRmVeWlFi",
             leaves:[
@@ -33,26 +28,51 @@ leave.component("leave",{
             ]
         };
 
-        $ctrl.paid_leaves_allowed = 30;
-        $ctrl.med_leaves_allowed = 30;
-        $ctrl.paid_taken = 20;
-        $ctrl.med_taken = 20;
-        $ctrl.total_leaves_allowed = $ctrl.paid_leaves_allowed + $ctrl.med_leaves_allowed;
+        $scope.paid_leaves_allowed = 30;
+        $scope.med_leaves_allowed = 30;
+        $scope.paid_taken = 20;
+        $scope.med_taken = 20;
+        $scope.total_leaves_allowed = $scope.paid_leaves_allowed + $scope.med_leaves_allowed;
 
         //This will come from api and get stored in leave_history
         function init(){
             const email = 'manishyadav4350@gmail.com'
             getUserWithEmail(email).then((res => {
-                $ctrl.user = res;
-                console.log($ctrl.user);
+                $scope.user = res;
+                console.log($scope.user);
             }));
         }
-        init();
+        // const unsubscribe = userSnapshot;
+        // unsubscribe();
+        // init();
+
+        //Leave Form
+        $scope.originalFormData = {
+            from:new Date(),
+            to:new Date(),
+            purpose:"",
+            status:"pending",
+            type:"paid"
+        };
+    
+        $scope.form_data = angular.copy($scope.originalFormData);
+        
+        $scope.resetForm = function () {
+            $scope.form_data = angular.copy($scope.originalFormData);
+        };
+    
+        $scope.submit = async function(e){
+            const id = 'AjDiqZMuOXboRmVeWlFi';
+            console.log("Form Upload")
+            // await submitLeaveData($scope.form_data,id);
+            // $scope.resetForm();
+        }
+
     }
-})
+)
 
 //Leave Form Application
-leave.controller('leaveForm',function($scope){
+app.controller('leaveForm',function($scope){
     $scope.originalFormData = {
         from:new Date(),
         to:new Date(),
@@ -69,13 +89,14 @@ leave.controller('leaveForm',function($scope){
 
     $scope.submit = async function(e){
         const id = 'AjDiqZMuOXboRmVeWlFi';
-        await submitLeaveData($scope.form_data,id);
-        $scope.resetForm();
+        console.log("Form Upload")
+        // await submitLeaveData($scope.form_data,id);
+        // $scope.resetForm();
     }
 });
 
 // Leave History Record Row
-leave.component("leaveRow",{
+app.component("leaveRow",{
     templateUrl:'app/leave/leaveRow/leaveRow.comp.html',
     bindings: {
         record: '=',
@@ -96,25 +117,6 @@ leave.component("leaveRow",{
                 default:
                     return "orange";
             }
-        }
-    }
-})
-
-leave.component("leaveForm",{
-    templateUrl:'app/leave/leaveForm/leaveForm.comp.html',
-    bindings:{  
-        showLeaveForm:"="
-    },
-    controller: function(){
-        var $ctrl = this;
-
-        $ctrl.closeLeaveForm = function(){
-            console.log("Close Leave Form");
-        }
-
-        $ctrl.submit = function(e){
-            // e.preventDefault()
-            console.log("Submitting data");
         }
     }
 })

@@ -2,9 +2,9 @@
 
 <div class="leave">
     <!-- Show leave form if 'showLeaveForm' is true -->
-    <div class="leave-form-container" ng-if="$ctrl.showLeaveForm" ng-controller="leaveForm">
-        <div class="leave-form" ng-app="app">
-            <form ng-submit="submit($event)">
+    <div class="leave-form-container" ng-if="showLeaveForm">
+        <div class="leave-form">
+            <form ng-submit="submit()">
                 <div class="leave-form-group">
                     <label for="from">From:</label>
                     <input type="date" id="from" ng-model="form_data.from"/>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="btn-block">
                     <button type="submit">Apply leave</button>
-                    <button ng-style="{background:'red'}" ng-click="$ctrl.showLeaveForm = !$ctrl.showLeaveForm">Close Form</button>
+                    <button ng-style="{background:'red'}" ng-click="showLeaveForm=!showLeaveForm">Close Form{{showLeaveForm}}</button>
                 </div>
             </form>
         </div>
@@ -27,10 +27,10 @@
     <!-- End Leave Form -->
 
     <div class="leave-status">
-        <h3><u>Leave Status: {{($ctrl.med_taken+$ctrl.med_taken)+"/"+($ctrl.total_leaves_allowed)}}</u></h3>
-        <p>Total Leaves Allowed: {{$ctrl.total_leaves_allowed}} </p>
-        <p>Paid Leaves Taken: {{$ctrl.paid_taken}} </p>
-        <p>Medical Leaves Taken: {{$ctrl.med_taken}}</p>
+        <h3><u>Leave Status: {{(med_taken+$ctrl.med_taken)+"/"+(total_leaves_allowed)}}</u></h3>
+        <p>Total Leaves Allowed: {{total_leaves_allowed}} </p>
+        <p>Paid Leaves Taken: {{paid_taken}} </p>
+        <p>Medical Leaves Taken: {{med_taken}}</p>
     </div>
     <div class="leave-history">
         <div class="leave-head">
@@ -40,10 +40,10 @@
                 <p class="leave-tab">Medical Leaves</p>
             </div>
             <div>
-                <button class="btn-leave-apply" ng-click="$ctrl.showLeaveForm = !$ctrl.showLeaveForm">Apply</button>
+                <button class="btn-leave-apply" ng-click="showLeaveForm = !showLeaveForm">Apply</button>
             </div>
         </div>
-        <div ng-repeat="curr in $ctrl.user.leaves">
+        <div ng-repeat="curr in user.leaves">
             <leave-row record="curr"></leave-row>
         </div>
     </div>
