@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
-import { ref, getDownloadURL, uploadBytesResumable, getStorage } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
+import { ref, getDownloadURL, uploadBytesResumable, getStorage,uploadString } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
 import { getFirestore,collection, onSnapshot,arrayUnion,arrayRemove,doc, updateDoc, query, where, getDocs,getDoc } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -15,28 +15,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
-
-export const uploadFiles = async (data) => {
-    if (!data.doc) return;
-    const storageRef = ref(storage, `files/${data.doc.file.name}.pdf`);
-    const uploadTask = uploadBytesResumable(storageRef, data.doc.file);
-    uploadTask.on(
-    "state_changed",
-    (snapshot) => {
-        const prog = Math.round(
-        (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-		console.log(prog);
-    },
-    (error) => console.log(error),
-    () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            // console.log(downloadURL);
-            // console.log(data.doc);
-            submitDocData(data.doc,data.id,downloadURL);
-        });
-    });
-};
 
 export async function getUserWithEmail(email)
 {
@@ -61,6 +39,23 @@ export async function submitLeaveData(data,user_id){
     });
     console.log("Done");
 }
+
+export const uploadFiles = async (data) => {
+    if (!data.doc) return;
+    try{
+        const storageRef = ref(storage, `files/${Math.random()}`);
+        // const uploadTask = await uploadBytesResumable(storageRef, data.doc.file);
+        // const url = await getDownloadURL(uploadTask.ref)
+        // console.log(url);
+        // return url;
+        const snapshot = await uploadString(storageRef, data.doc.file, 'data_url');
+        const url = await getDownloadURL(snapshot.ref)
+        console.log("File Uploaded",url);
+        return (url);
+    }catch(err){
+        console.log(err);
+    }
+};
 
 export async function submitDocData(data,user_id,url){
     if(!data.file)

@@ -45,10 +45,13 @@ app.controller("leave",async function($scope, $rootScope){
 
         $scope.init = async function(){
             const email = 'manishyadav4350@gmail.com'
-            await getUserWithEmail(email).then((res => {
-                $scope.user = res;
-                console.log($scope.user);
-            }));
+            // await getUserWithEmail(email).then((res => {
+            //     $scope.user = res;
+            //     console.log($scope.user);
+            // }));
+            const res = await getUserWithEmail($rootScope.email);
+            console.log(res);
+            $scope.user = res;
         }
         $scope.init();  
 

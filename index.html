@@ -27,6 +27,7 @@
 </head>
   
 <body>
+    <load-spinner ng-if="rootShowSpinner"></load-spinner>
     <div class="main">
         <div class="main-left">
             <div ng-include="'app/sidebar/sidebar.comp.html'" ng-controller="sidebar"></div>
