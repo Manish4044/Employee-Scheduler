@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-app.js";
 import { ref, getDownloadURL, uploadBytesResumable, getStorage } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-storage.js";
-import { getFirestore,collection, onSnapshot,arrayUnion,arrayRemove,doc, updateDoc, query, where, getDocs } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
+import { getFirestore,collection, onSnapshot,arrayUnion,arrayRemove,doc, updateDoc, query, where, getDocs,getDoc } from "https://www.gstatic.com/firebasejs/9.12.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAySzOQgBqnidWuq0CcMBCcC2AXmL6ZOfs",
@@ -11,6 +11,7 @@ const firebaseConfig = {
     appId: "1:787143636531:web:c543ff1abd021b1513d546"
 };
 
+// Firebase Configuration
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
@@ -30,8 +31,8 @@ export const uploadFiles = async (data) => {
     (error) => console.log(error),
     () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log(downloadURL);
-            console.log(data.doc);
+            // console.log(downloadURL);
+            // console.log(data.doc);
             submitDocData(data.doc,data.id,downloadURL);
         });
     });
@@ -63,18 +64,32 @@ export async function submitLeaveData(data,user_id){
 
 export async function submitDocData(data,user_id,url){
     if(!data.file)
-        return new Error("Pass doc url");
-    // const docRef = doc(db, "users", "AjDiqZMuOXboRmVeWlFi");
+    return new Error("Pass doc url");
     const docRef = doc(db, "users", user_id);
 
-    console.log(data);
+    //Find the already stored document if any
+    let to_be_removed = null;
+    let docSnap = await getDoc(docRef);
+    docSnap = docSnap.data();
+    docSnap = docSnap.documents;
+    for(let i=0; i<docSnap.length; i++)
+    {
+        if(docSnap[i].name == data.name)
+        {
+            to_be_removed = docSnap[i];
+            break;
+        }
+    }
+
+    // Delete the already stored document if any
     await updateDoc(docRef, {
-        documents: arrayRemove(data)
+        documents: arrayRemove(to_be_removed)
     });
     
     data.file=url;
     
     console.log(data);
+    // Add the updated or new document
     await updateDoc(docRef, {
         documents: arrayUnion(data)
     });

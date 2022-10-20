@@ -1,16 +1,17 @@
 // var sidebar = angular.module('sidebar',['ngAvatar']);
 
-app.controller('sidebar',function($scope){
+app.controller('sidebar',function($scope, $rootScope){
         $scope.showSidebar = false;
         
         $scope.toggleSidebar = function() {
             console.log("Toggle");
             $scope.showSidebar = !$scope.showSidebar;
         }
-    }
-)
 
-app.controller('navbar',function($scope){
-        console.log("Navbar loaded")
+        $scope.showPage = function(page){
+            $rootScope.route = {
+                [page]:true,
+            }
+        }
     }
 )

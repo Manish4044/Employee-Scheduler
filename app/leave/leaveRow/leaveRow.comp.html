@@ -2,7 +2,7 @@
 
 <div class="leave-row">
     <div class="leave-desc">
-        <p class="leave-time">{{$ctrl.record.from}} - {{$ctrl.record.to}}</p>
+        <p class="leave-time">{{$ctrl.record.from.toDate().toISOString().slice(0,10)}} - {{$ctrl.record.to.toDate().toISOString().slice(0,10)}}</p>
         <p class="leave-purpose">{{$ctrl.record.purpose}}</p>
     </div>
     <div class="leave-btns">

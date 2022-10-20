@@ -11,6 +11,11 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
     padding:10px;
+    background: #D9D9D9;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    color:black;
 }
 .leave-status > h3{
     font-size:18px;
@@ -29,6 +34,11 @@
     border-radius: 8px;
     padding:10px;
     margin: 15px 0;
+    background: #D9D9D9;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    color:black;
 }
 .leave-history .leave-head{
     display: flex;

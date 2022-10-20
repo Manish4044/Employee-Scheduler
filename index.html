@@ -24,7 +24,6 @@
     <script src="app/sidebar/sidebar.comp.js"></script>
     <script src="app/task/task.comp.js"></script>
     <script type="module" src="app/profile/profile.comp.js"></script>
-    <script type="module" src="app/uploadForm/uploadForm.comp.js"></script>
 </head>
   
 <body>
@@ -34,9 +33,9 @@
         </div>
         <div class="main-right">
             <div ng-include="'app/navbar/navbar.comp.html'" ng-controller="navbar"></div>
-            <div ng-include="'app/leave/leave.comp.html'" ng-controller="leave"></div>
-            <div ng-include="'app/profile/profile.comp.html'" ng-controller="profile"></div>
-            <div ng-include="'app/task/task.comp.html'" ng-controller="task"></div>
+            <div ng-if="route.leave" ng-include="'app/leave/leave.comp.html'" ng-controller="leave"></div>
+            <div ng-if="route.profile" ng-include="'app/profile/profile.comp.html'" ng-controller="profile"></div>
+            <div ng-if="route.task" ng-include="'app/task/task.comp.html'" ng-controller="task"></div>
         </div>
     </div>
 </body>

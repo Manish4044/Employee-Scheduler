@@ -1,16 +1,16 @@
 .task-row{
     display: flex;
     align-items: center;
-    max-width: 600px;
+    max-width: 100%;
     /* background: #504949; */
     background: #858181;
     border-radius: 7px;
     margin:10px 0;
     padding: 5px 10px;
-    color:lightgrey;
+    color:white;
 }
 .task-row p{
-    font-size: 13px;
+    font-size: 15px;
     flex:1;
     margin: 0 5px;
 }

@@ -1,22 +1,21 @@
 <link rel="stylesheet" href="app/profile/profile.comp.css">
 <!-- <button ng-click="$ctrl.toggleVisible()">Profile</button> -->
-
-
 <div class="profile">
-    <button ng-click="upload()">Click</button>
     <h3>Documents</h3>
-    <div class="profile-file">
-        <p>{{documents[0].title}}</p>
-        <div class="upload-box">
-            <input type="file" fileread="documents[0].file">
-            <button ng-if="documents[0].file" ng-click="upload(documents[0])">submit</button>
-        </div>
-    </div>
-    <div class="profile-file">
-        <p>{{documents[1].title}}</p>
-        <div class="upload-box">
-            <input type="file" fileread="documents[1].file">
-            <button ng-if="documents[1].file" ng-click="upload(documents[1])">submit</button>
+    <div class="profile-docs">
+        <div class="profile-file" ng-repeat="doc in documents">
+            <p>{{doc.title}}</p>
+            <div class="upload-box">
+                <div class="btns">
+                    <button ng-click="upload(doc)" class="btn-submit">Submit</button>
+                    <label for="{{doc.name}}">Select</label>
+                    <input type="file" id="{{doc.name}}" hidden fileread="doc.file" custom-on-change="onChange">
+                </div>
+                <div ng-if="temp[doc.name]" class="file-desc">
+                    {{temp[doc.name].name}}
+                    ({{formatBytes(temp[doc.name].size)}})
+                </div>
+            </div>
         </div>
     </div>
 </div>

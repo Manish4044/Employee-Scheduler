@@ -1,10 +1,45 @@
 .profile{
     color:black;
+    padding: 15px;
+    max-width:600px;
+    margin:auto;
+}
+.profile .btn-submit{
+    padding:4px 10px;
+}
+.profile input{
+    width:fit-content;
+}
+.profile h3{
+    margin:10px 0;
+    font-weight: 500;
+}
+.profile-docs{
+    min-height:400px;
+    padding:10px;
+    background: #D9D9D9;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    color:black;
 }
 .profile-file{
     display: flex;
-    max-width:500px;
+    width:100%;
+    margin:10px 0;
     justify-content: space-between;
+    /* align-items: center; */
+}
+.file-desc{
+    border:1px solid grey;
+    border-radius:8px;
+    padding:5px 10px;
+    margin:5px 0;
+    font-size:12px;
+}
+.upload-box > .btns{
+    width:fit-content;
+    margin-left:auto;
 }
 
 

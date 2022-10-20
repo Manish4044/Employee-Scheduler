@@ -1,3 +1,0 @@
-const getDate = function(date){
-    
-}

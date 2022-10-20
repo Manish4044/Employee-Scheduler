@@ -1,11 +1,12 @@
 .leave-row{
     display: flex;
     align-items: center;
-    background: #504949;
+    background: #A09B9B;
     border-radius: 10px;
     margin:10px 0;
     padding: 5px 10px;
     color:lightgrey;
+    color:black;
 }
 
 .leave-desc{

@@ -2,9 +2,9 @@
 
 <div class="leave">
     <!-- Show leave form if 'showLeaveForm' is true -->
-    <div class="leave-form-container" ng-if="showLeaveForm">
+    <div class="leave-form-container" ng-if="showLeaveForm"> 
         <div class="leave-form">
-            <form ng-submit="submit()">
+            <form ng-submit="submit(form_data)">
                 <div class="leave-form-group">
                     <label for="from">From:</label>
                     <input type="date" id="from" ng-model="form_data.from"/>
@@ -14,17 +14,24 @@
                     <input type="date" id="to" ng-model="form_data.to" ng-disabled="!form_data.from"/>
                 </div>
                 <div class="leave-form-group">
+                    <label for="type">Type:</label><br>
+                    <select id="type" ng-model="form_data.type" style="width:100%">
+                        <option value="paid">Paid</option>
+                        <option value="med">Med</option>
+                    </select>
+                </div>
+                <div class="leave-form-group">
                     <label for="purpose">Purpose of Leave</label>
                     <textarea id="purpose" cols="30" rows="10" ng-model="form_data.purpose"></textarea>
                 </div>
                 <div class="btn-block">
                     <button type="submit">Apply leave</button>
-                    <button ng-style="{background:'red'}" ng-click="showLeaveForm=!showLeaveForm">Close Form{{showLeaveForm}}</button>
+                    <button ng-click="showLeaveForm = !showLeaveForm" ng-style="{background:'red'}">Close Form {{showLeaveForm}}</button>
                 </div>
             </form>
         </div>
     </div>
-    <!-- End Leave Form -->
+    <!  -- End Leave Form -->
 
     <div class="leave-status">
         <h3><u>Leave Status: {{(med_taken+$ctrl.med_taken)+"/"+(total_leaves_allowed)}}</u></h3>

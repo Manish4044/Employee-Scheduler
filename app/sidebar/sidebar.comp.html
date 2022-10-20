@@ -6,11 +6,11 @@
         <p class="logo" ng-if="showSidebar">Queueme</p>
     </div>
     <div class="sidebar-menu">
-        <a class="sidebar-item" href="#!">
+        <a class="sidebar-item" href="#!" ng-click="showPage('leave')">
             <i class="fas fa-sign-out-alt"></i>
             <p ng-if="showSidebar">Leaves</p>
         </a>
-        <a class="sidebar-item" href="#!task">
+        <a class="sidebar-item" href="#!task" ng-click="showPage('task')">
             <i class="fa fa-calendar-days"></i>
             <p ng-if="showSidebar">Tasks</p>
         </a>
