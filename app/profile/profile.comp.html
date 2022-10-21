@@ -1,14 +1,14 @@
 <link rel="stylesheet" href="app/profile/profile.comp.css">
 
 <div class="profile">
-    <h3>Documents</h3>
+    <h1 style="text-align:center;color:black;">Documents</h1>
     <div class="profile-docs">
         <div class="profile-file" ng-repeat="doc in documents">
-            <p>{{doc.title}}</p>
+            <p><b>{{doc.title}}</b></p>
             <div class="upload-box">
                 <div class="btns">
-                    <button ng-click="upload(doc)" class="btn-submit">Submit</button>
-                    <label for="{{doc.name}}">Select</label>
+                    <button ng-click="upload(doc)" ng-show="doc.file" class="btn-submit">Submit</button>
+                    <label for="{{doc.name}}" class="btn-submit">Select</label>
                     <input type="file" id="{{doc.name}}" hidden fileread="doc.file" custom-on-change="onChange">
                 </div>
                 <div ng-if="temp[doc.name]" class="file-desc">

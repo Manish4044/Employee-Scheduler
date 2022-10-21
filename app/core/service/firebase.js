@@ -30,10 +30,7 @@ export async function getUserWithEmail(email)
 export async function submitLeaveData(data,user_id){
     if(!data)
         return new Error("Pass form data");
-    console.log(data);
-    // const docRef = doc(db, "users", "AjDiqZMuOXboRmVeWlFi");
     const docRef = doc(db, "users", user_id);
-
     await updateDoc(docRef, {
         leaves: arrayUnion(data)
     });
@@ -44,10 +41,6 @@ export const uploadFiles = async (data) => {
     if (!data.doc) return;
     try{
         const storageRef = ref(storage, `files/${Math.random()}`);
-        // const uploadTask = await uploadBytesResumable(storageRef, data.doc.file);
-        // const url = await getDownloadURL(uploadTask.ref)
-        // console.log(url);
-        // return url;
         const snapshot = await uploadString(storageRef, data.doc.file, 'data_url');
         const url = await getDownloadURL(snapshot.ref)
         console.log("File Uploaded",url);
@@ -89,6 +82,14 @@ export async function submitDocData(data,user_id,url){
         documents: arrayUnion(data)
     });
     console.log("Done");
+}
+
+export async function getUserDocuments(user_id, collection_name='users'){
+    const docRef = doc(db, collection_name, user_id);
+    let res = {};
+    const docSnap = await getDoc(docRef);
+    res = {id:docSnap.id,...docSnap.data()}
+    return res.documents;
 }
 
 export const userSnapshot = function(){

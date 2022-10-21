@@ -1,65 +1,43 @@
 import {getUserWithEmail, submitLeaveData, userSnapshot} from '../core/service/firebase.js'
 
-app.controller("leave",async function($scope, $rootScope){
+app.controller("leave",async function($scope, $rootScope, $timeout){
         $scope.showLeaveForm = false;
         
         $scope.toggleFormVisibility = function(){
             console.log("toggle");
             $scope.showLeaveForm = !$scope.showLeaveForm;
         }
-       
-        $scope.user = {
-            name:"Manish Yadav",
-            id:"AjDiqZMuOXboRmVeWlFi",
-            leaves:[
-                {
-                    from:"01/09/2022",
-                    to:"10/09/2022",
-                    purpose:"This leave is for personal reasons",
-                    status:"Approved",
-                    type:"paid"
-                },
-                {
-                    from:"05/08/2022",
-                    to:"15/08/2022",
-                    purpose:"Leave for going to Durga Puja holidays",
-                    status:"Rejected",
-                    type:"paid"
-                },
-                {
-                    from:"20/08/2022",
-                    to:"25/08/2022",
-                    purpose:"Leave for visiting the doctor",
-                    status:"Pending",
-                    type:"paid"
-                }
-            ]
-        };
 
-
+        $scope.toggleSpinner = function(){
+            console.log("toggle spinner");
+            $rootScope.rootShowSpinner = true;
+            console.log($rootScope.rootShowSpinner);
+        }
+        
+        // Leave Status and History
         $scope.paid_leaves_allowed = 30;
         $scope.med_leaves_allowed = 30;
         $scope.paid_taken = 20;
         $scope.med_taken = 20;
         $scope.total_leaves_allowed = $scope.paid_leaves_allowed + $scope.med_leaves_allowed;
-
+        
         $scope.init = async function(){
-            const email = 'manishyadav4350@gmail.com'
-            // await getUserWithEmail(email).then((res => {
-            //     $scope.user = res;
-            //     console.log($scope.user);
-            // }));
             const res = await getUserWithEmail($rootScope.email);
             console.log(res);
             $scope.user = res;
+            $timeout(function(){
+                $scope.$apply();
+            })
+            return res.leaves;
         }
         $scope.init();  
-
-        //Leave Form Operation
+        // End Leave Status and History
+        
+        //Leave Form Operations Below
         $scope.originalFormData = {
             from:new Date(),
             to:new Date(),
-            purpose:"",
+            purpose:"This is the default reason",
             status:"pending",
             type:"med"
         };
@@ -71,11 +49,11 @@ app.controller("leave",async function($scope, $rootScope){
         };
     
         $scope.submit = async function(data){
-            console.log(data)
+            $rootScope.showSpinner();
             await submitLeaveData($scope.form_data,$rootScope.id);
             $scope.resetForm();
+            $rootScope.hideSpinner();
         }
-
     }
 )
 

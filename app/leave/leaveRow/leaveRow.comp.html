@@ -3,7 +3,7 @@
 <div class="leave-row">
     <div class="leave-desc">
         <p class="leave-time">{{$ctrl.record.from.toDate().toISOString().slice(0,10)}} - {{$ctrl.record.to.toDate().toISOString().slice(0,10)}}</p>
-        <p class="leave-purpose">{{$ctrl.record.purpose}}</p>
+        <p class="leave-purpose">({{$ctrl.record.type}}) {{$ctrl.record.purpose}}</p>
     </div>
     <div class="leave-btns">
         <button class="btn-leave" ng-style="{color:$ctrl.renderButtonText($ctrl.record.status)}">{{$ctrl.record.status}}</button>

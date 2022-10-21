@@ -7,12 +7,16 @@
     </div>
     <div class="sidebar-menu">
         <a class="sidebar-item" href="#!" ng-click="showPage('leave')">
-            <i class="fas fa-sign-out-alt"></i>
+            <i class="fas fa-sign-out-alt" ng-style="{'color':route.leave ? '#8ABF39' : 'white' }"></i>
             <p ng-if="showSidebar">Leaves</p>
         </a>
         <a class="sidebar-item" href="#!task" ng-click="showPage('task')">
-            <i class="fa fa-calendar-days"></i>
+            <i class="fa fa-calendar-days" ng-style="{'color':route.task ? '#8ABF39' : 'white' }"></i>
             <p ng-if="showSidebar">Tasks</p>
+        </a>
+        <a class="sidebar-item" href="#!task" ng-click="showPage('profile')">
+            <i class="fa fa-file" ng-style="{'color':route.profile ? '#8ABF39' : 'white' }"></i>
+            <p ng-if="showSidebar">Profile</p>
         </a>
     </div>
 </div>

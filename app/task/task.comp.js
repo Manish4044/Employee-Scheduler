@@ -1,5 +1,3 @@
-// var task = angular.module('task',[]);
-
 app.controller('task',function($scope){
         console.log("Task");
     }

@@ -1,40 +1,42 @@
 <link type="text/css" rel="stylesheet" href="app/leave/leave.comp.css"/>
 
 <div class="leave">
+    <!-- <button ng-click="toggleSpinner()">Spinner Toggle</button> -->
+    
     <!-- Show leave form if 'showLeaveForm' is true -->
-    <div class="leave-form-container" ng-if="showLeaveForm"> 
+    <div class="leave-form-container" ng-show="showLeaveForm"> 
         <div class="leave-form">
-            <form ng-submit="submit(form_data)">
+            <form>
                 <div class="leave-form-group">
                     <label for="from">From:</label>
-                    <input type="date" id="from" ng-model="form_data.from"/>
+                    <input type="date" id="from" ng-model="form_data.from" required/>
                 </div>
                 <div class="leave-form-group">
                     <label for="to">To:</label>
-                    <input type="date" id="to" ng-model="form_data.to" ng-disabled="!form_data.from"/>
+                    <input type="date" id="to" ng-model="form_data.to" ng-disabled="!form_data.from" required/>
                 </div>
                 <div class="leave-form-group">
                     <label for="type">Type:</label><br>
-                    <select id="type" ng-model="form_data.type" style="width:100%">
+                    <select id="type" ng-model="form_data.type" style="width:100%" required>
                         <option value="paid">Paid</option>
                         <option value="med">Med</option>
                     </select>
                 </div>
                 <div class="leave-form-group">
                     <label for="purpose">Purpose of Leave</label>
-                    <textarea id="purpose" cols="30" rows="10" ng-model="form_data.purpose"></textarea>
+                    <textarea id="purpose" cols="30" rows="10" ng-model="form_data.purpose" required></textarea>
                 </div>
                 <div class="btn-block">
-                    <button type="submit">Apply leave</button>
-                    <button ng-click="showLeaveForm = !showLeaveForm" ng-style="{background:'red'}">Close Form {{showLeaveForm}}</button>
+                    <button type="submit" ng-click="submit(form_data); showLeaveForm = !showLeaveForm">Apply leave</button>
                 </div>
             </form>
+            <button ng-click="showLeaveForm = !showLeaveForm" ng-style="{background:'red'}">Close Form</button>
         </div>
     </div>
-    <!  -- End Leave Form -->
-
+    <!-- End Leave Form -->
+    <h1 style="text-align:center;color:black;">Leaves</h1>
     <div class="leave-status">
-        <h3><u>Leave Status: {{(med_taken+$ctrl.med_taken)+"/"+(total_leaves_allowed)}}</u></h3>
+        <h3><u>Leave Status: {{(paid_taken+med_taken)+"/"+(total_leaves_allowed)}}</u></h3>
         <p>Total Leaves Allowed: {{total_leaves_allowed}} </p>
         <p>Paid Leaves Taken: {{paid_taken}} </p>
         <p>Medical Leaves Taken: {{med_taken}}</p>

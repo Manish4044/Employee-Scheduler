@@ -6,7 +6,7 @@
 }
 .profile .btn-submit{
     padding:4px 10px;
-}
+}   
 .profile input{
     width:fit-content;
 }
@@ -16,8 +16,10 @@
 }
 .profile-docs{
     min-height:400px;
+    max-height:500px;
+    overflow-y:auto;
     padding:10px;
-    background: #D9D9D9;
+    /* background: #D9D9D9; */
     border: 1px solid #000000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
@@ -26,13 +28,13 @@
 .profile-file{
     display: flex;
     width:100%;
-    margin:10px 0;
+    margin:20px 0;
     justify-content: space-between;
-    /* align-items: center; */
 }
 .file-desc{
     border:1px solid grey;
     border-radius:8px;
+    font-weight: 600;
     padding:5px 10px;
     margin:5px 0;
     font-size:12px;
@@ -40,6 +42,11 @@
 .upload-box > .btns{
     width:fit-content;
     margin-left:auto;
+}
+
+.btn-submit{
+    border:1px solid black;
+    padding:5px 10px;
 }
 
 

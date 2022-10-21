@@ -4,21 +4,20 @@
     max-width: 800px;
     height:100%;
     padding:10px;
-    overflow-y: scroll;
     color:black;
+    overflow-y:auto;
 }
-/* .task::-webkit-scrollbar {
-    display: none;
-} */
 .task .heading{
     font-weight: 400;
     margin:8px 0;
 }
 .task-today,.task-upcoming, .task-past{
     background: #D9D9D9;
+    max-height:300px;
     border: 1px solid #000000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     padding:10px;
     margin: 15px 0;
+    overflow-y:scroll;
 }
